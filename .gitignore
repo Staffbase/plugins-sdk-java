@@ -1,0 +1,16 @@
+.DS_Store
+
+*.class
+*.jar
+*.war
+*.ear
+
+.idea
+.idea_modules
+
+*.iml
+*.iws
+
+.classpath
+.project
+.settings

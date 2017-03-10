@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.staffbase</groupId>
+  <artifactId>staffbase-plugins-sdk</artifactId>
+  <version>1.0.0-rc1</version>
+  <packaging>jar</packaging>
+
+  <description>
+    Staffbase plugins SDK for Java.
+  </description>
+
+  <organization>
+    <name>Staffbase</name>
+    <url>https://staffbase.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Thilo Schmalfuß</name>
+      <email>thilo@staffbase.com</email>
+      <timezone>GMT+1</timezone>
+      <organization>Staffbase</organization>
+      <organizationUrl>https://staffbase.com</organizationUrl>
+      <roles>
+        <role>DevOp</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <name>Tilo Zemke</name>
+      <email>tilo@staffbase.com</email>
+      <timezone>GMT+1</timezone>
+      <organization>Staffbase</organization>
+      <organizationUrl>https://staffbase.com</organizationUrl>
+      <roles>
+        <role>CTO</role>
+      </roles>
+    </developer>
+
+    <developer>
+      <name>Vitaliy Ivanov</name>
+      <email>vitaliy@staffbase.com</email>
+      <timezone>GMT+1</timezone>
+      <organization>Staffbase</organization>
+      <organizationUrl>https://staffbase.com</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+
+    <osgi.export>
+      com.staffbase.plugins.sdk;version=${project.version}, com.staffbase.plugins.sdk.*;version=${project.version}
+    </osgi.export>
+    <!--  Generate PackageVersion.java into this directory.  -->
+    <packageVersion.dir>com/staffbase/plugins/sdk</packageVersion.dir>
+    <packageVersion.package>${project.groupId}.json</packageVersion.package>
+
+    <jackson.version>2.7.4</jackson.version>
+    <jose4j.version>0.5.1</jose4j.version>
+    <log4j.version>2.5</log4j.version>
+
+    <junit.version>4.12</junit.version>
+    <mockito.version>2.0.53-beta</mockito.version>
+
+  </properties>
+
+  <dependencies>
+
+    <!-- Jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <!-- JOSE4J -->
+    <dependency>
+      <groupId>org.bitbucket.b_c</groupId>
+      <artifactId>jose4j</artifactId>
+      <version>${jose4j.version}</version>
+    </dependency>
+
+    <!-- Log4j -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-jul</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+
+    <!-- JUnit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Mockito -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

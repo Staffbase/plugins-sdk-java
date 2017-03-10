@@ -1,0 +1,33 @@
+{
+  "configuration": {
+    "status": "WARN",
+    "shutdownHook": "disable",
+    "appenders": {
+      "Console": {
+        "name": "Console",
+        "target": "SYSTEM_OUT",
+        "PatternLayout": {
+          "pattern": "%-5level %d{ISO8601} [%t] %logger{36} - %msg%n"
+        }
+      }
+    },
+    "loggers": {
+      "logger": [
+        {
+          "name": "com.staffbase.plugins.sdk.sso",
+          "additivity": false,
+          "level": "debug",
+          "AppenderRef": {
+            "ref": "Console"
+          }
+        }
+      ],
+      "root": {
+        "level": "warn",
+        "AppenderRef": {
+          "ref": "Console"
+        }
+      }
+    }
+  }
+}
