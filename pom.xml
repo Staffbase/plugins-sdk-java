@@ -1,142 +1,216 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.staffbase</groupId>
-  <artifactId>staffbase-plugins-sdk</artifactId>
-  <version>1.0.0-rc1</version>
-  <packaging>jar</packaging>
-
-  <description>
-    Staffbase plugins SDK for Java.
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.staffbase</groupId>
+    <artifactId>plugins-sdk-java</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>
+    ${project.groupId}:${project.artifactId}
+  </name>
+    <description>
+    A library to get your project integrated into the Staffbase app.
   </description>
-
-  <organization>
-    <name>Staffbase</name>
-    <url>https://staffbase.com</url>
-  </organization>
-
-  <developers>
-    <developer>
-      <name>Thilo Schmalfuß</name>
-      <email>thilo@staffbase.com</email>
-      <timezone>GMT+1</timezone>
-      <organization>Staffbase</organization>
-      <organizationUrl>https://staffbase.com</organizationUrl>
-      <roles>
-        <role>DevOp</role>
-      </roles>
-    </developer>
-
-    <developer>
-      <name>Tilo Zemke</name>
-      <email>tilo@staffbase.com</email>
-      <timezone>GMT+1</timezone>
-      <organization>Staffbase</organization>
-      <organizationUrl>https://staffbase.com</organizationUrl>
-      <roles>
-        <role>CTO</role>
-      </roles>
-    </developer>
-
-    <developer>
-      <name>Vitaliy Ivanov</name>
-      <email>vitaliy@staffbase.com</email>
-      <timezone>GMT+1</timezone>
-      <organization>Staffbase</organization>
-      <organizationUrl>https://staffbase.com</organizationUrl>
-      <roles>
-        <role>Developer</role>
-      </roles>
-    </developer>
-  </developers>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
-
-    <osgi.export>
+    <url>https://github.com/Staffbase/plugins-sdk-java</url>
+    <organization>
+        <name>Staffbase</name>
+        <url>https://staffbase.com</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git://github.com/Staffbase/plugins-sdk-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com/Staffbase/plugins-sdk-java.git</developerConnection>
+        <url>http://github.com/Staffbase/plugins-sdk-java/tree/master</url>
+    </scm>
+    <developers>
+        <developer>
+            <name>Thilo Schmalfuß</name>
+            <email>thilo@staffbase.com</email>
+            <timezone>GMT+1</timezone>
+            <organization>Staffbase</organization>
+            <organizationUrl>https://staffbase.com</organizationUrl>
+            <roles>
+                <role>DevOp</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Tilo Zemke</name>
+            <email>tilo@staffbase.com</email>
+            <timezone>GMT+1</timezone>
+            <organization>Staffbase</organization>
+            <organizationUrl>https://staffbase.com</organizationUrl>
+            <roles>
+                <role>CTO</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Vitaliy Ivanov</name>
+            <email>vitaliy@staffbase.com</email>
+            <timezone>GMT+1</timezone>
+            <organization>Staffbase</organization>
+            <organizationUrl>https://staffbase.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <osgi.export>
       com.staffbase.plugins.sdk;version=${project.version}, com.staffbase.plugins.sdk.*;version=${project.version}
     </osgi.export>
-    <!--  Generate PackageVersion.java into this directory.  -->
-    <packageVersion.dir>com/staffbase/plugins/sdk</packageVersion.dir>
-    <packageVersion.package>${project.groupId}.json</packageVersion.package>
-
-    <jackson.version>2.7.4</jackson.version>
-    <jose4j.version>0.5.1</jose4j.version>
-    <log4j.version>2.5</log4j.version>
-
-    <junit.version>4.12</junit.version>
-    <mockito.version>2.0.53-beta</mockito.version>
-
-  </properties>
-
-  <dependencies>
-
-    <!-- Jackson -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-
-    <!-- JOSE4J -->
-    <dependency>
-      <groupId>org.bitbucket.b_c</groupId>
-      <artifactId>jose4j</artifactId>
-      <version>${jose4j.version}</version>
-    </dependency>
-
-    <!-- Log4j -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-jul</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-
-    <!-- JUnit -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- Mockito -->
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>${mockito.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19.1</version>
-      </plugin>
-    </plugins>
-  </build>
-
+        <!--  Generate PackageVersion.java into this directory.  -->
+        <packageVersion.dir>com/staffbase/plugins/sdk</packageVersion.dir>
+        <packageVersion.package>${project.groupId}.json</packageVersion.package>
+        <jackson.version>2.7.4</jackson.version>
+        <jose4j.version>0.5.1</jose4j.version>
+        <log4j.version>2.5</log4j.version>
+        <junit.version>4.12</junit.version>
+        <mockito.version>2.0.53-beta</mockito.version>
+    </properties>
+    <dependencies>
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!-- JOSE4J -->
+        <dependency>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>${jose4j.version}</version>
+        </dependency>
+        <!-- Log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jul</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!-- JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Mockito -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <!-- Surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+            <!-- Source -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Deployment -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <!-- <stagingProfileId>19375019933d12</stagingProfileId> -->
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

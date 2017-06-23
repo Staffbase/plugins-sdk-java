@@ -10,6 +10,7 @@
  */
 package com.staffbase.plugins.sdk.sso;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -114,6 +115,11 @@ public class SSOData {
    */
   public static final String KEY_THEME_BACKGROUND_COLOR = "theming_bg";
 
+  /**
+   * The key in the JWT claims for fetching the list of tags
+   * that are configured in the Staffbase app. 
+   */
+  public static final String KEY_TAGS = "tags";
 
   /**********************************************
    * Members
@@ -182,6 +188,10 @@ public class SSOData {
    */
   private final String themeBackgroundColor;
 
+  /**
+   * The tags that are configured in the Staffbase app.
+   */
+  private final List<String> tags;
 
   /**
    * The locale of the user requesting the plugin instance.
@@ -224,6 +234,7 @@ public class SSOData {
     this.entityType = jwtClaims.getClaimValue(KEY_ENTITY_TYPE, String.class);
     this.themeTextColor = jwtClaims.getClaimValue(KEY_THEME_TEXT_COLOR, String.class);
     this.themeBackgroundColor = jwtClaims.getClaimValue(KEY_THEME_BACKGROUND_COLOR, String.class);
+    this.tags = jwtClaims.getClaimValue(KEY_TAGS, List.class);
   }
 
   /**********************************************
@@ -397,6 +408,18 @@ public class SSOData {
    */
   public boolean isEditor() {
     return ROLE_EDITOR.equals(this.userRole);
+  }
+
+  /**
+   * Get the tags of the user in regards of the requested {@link #instanceID}.
+   * If the requesting user does have admin permissions, this value is set to
+   * {@value #ROLE_EDITOR}.
+   *
+   * @see #tags
+   * @return the requesting user's tags
+   */
+  public Optional<List<String>> getTags() {
+    return Optional.ofNullable(this.tags);
   }
 
   @Override
