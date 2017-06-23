@@ -16,7 +16,9 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Arrays;
 
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
@@ -41,6 +43,7 @@ public class SSODataTest {
   public static final String DATA_ENTITY_TYPE = "user";
   public static final String DATA_THEME_TEXT_COLOR = "#000000";
   public static final String DATA_THEME_BACKGROUND_COLOR = "#FFFFFF";
+  public static final List<String> DATA_TAGS = Arrays.asList("profile:tag1", "profile:tag2");
 
   /**
    * Test empty claims.
@@ -76,6 +79,7 @@ public class SSODataTest {
     when(claims.getClaimValue(SSOData.KEY_ENTITY_TYPE, String.class)).thenReturn(DATA_ENTITY_TYPE);
     when(claims.getClaimValue(SSOData.KEY_THEME_TEXT_COLOR, String.class)).thenReturn(DATA_THEME_TEXT_COLOR);
     when(claims.getClaimValue(SSOData.KEY_THEME_BACKGROUND_COLOR, String.class)).thenReturn(DATA_THEME_BACKGROUND_COLOR);
+    when(claims.getClaimValue(SSOData.KEY_TAGS, List.class)).thenReturn(DATA_TAGS);
 
     final SSOData ssoData = new SSOData(claims);
 
@@ -94,10 +98,10 @@ public class SSODataTest {
     assertEquals(DATA_ENTITY_TYPE, ssoData.getEntityType().get());
     assertEquals(DATA_THEME_TEXT_COLOR, ssoData.getThemeTextColor().get());
     assertEquals(DATA_THEME_BACKGROUND_COLOR, ssoData.getThemeBackgroundColor().get());
+    assertEquals(DATA_TAGS, ssoData.getTags().get());
 
     assertEquals(DATA_USER_ROLE.equals(ROLE_EDITOR), ssoData.isEditor());
 
     assertEquals(Locale.US, ssoData.getUserLocale().get());
   }
-
 }

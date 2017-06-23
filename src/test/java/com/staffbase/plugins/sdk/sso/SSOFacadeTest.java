@@ -308,7 +308,6 @@ public class SSOFacadeTest {
   public void testNullKey() throws JoseException, SSOException {
 
     final SSOFacade ssoFac = SSOFacade.create(null);
-
   }
 
   /**
@@ -338,6 +337,5 @@ public class SSOFacadeTest {
 
     ssoFac.verify("");
   }
-  
 }
 
