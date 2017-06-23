@@ -4,7 +4,7 @@ If you are developing your own plugin for your Staffbase app we describe the aut
 
 ## Installation
 
-We provide our Plugin SDK via Maven Central Repository (https://oss.sonatype.org/content/repositories/snapshots/com/staffbase/). Thus, you can just use maven for installation:
+We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/maven2/com/staffbase/plugins-sdk-java/). Thus, you can just use maven for installation:
 
 ### Maven
 
