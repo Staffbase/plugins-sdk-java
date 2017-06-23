@@ -9,9 +9,9 @@ test:
 	mvn test
 
 deploy:
-	mvn clean deploy
+	mvn clean deploy -P release
 
-doc: doc-clean 
+doc: doc-clean
 	mvn site
 	git checkout ${DOC_BRANCH}
 	git rm --ignore-unmatch -r *
