@@ -19,7 +19,7 @@ doc: doc-clean
 	git add .
 	@echo ---------------------
 	@echo 'Please check the contents and do'
-	@echo '# git commit -m "updated docs" && git push manualy'
+	@echo '# git commit -m "updated docs" && git push manually'
 	@echo 'then return to your original branch'
 
 doc-folder:
