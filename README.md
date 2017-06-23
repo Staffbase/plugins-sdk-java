@@ -20,7 +20,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 
 ```
 dependencies {
-    compile 'com.staffbase:plugins-sdk-java:1.0'
+    compile 'com.staffbase:plugins-sdk-java:1.0.0'
 }
 ```
 
