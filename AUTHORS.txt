@@ -1,0 +1,4 @@
+# Authors ordered by first contribution
+
+Thilo Schmalfuß - https://github.com/scthi
+Vitaliy Ivanov - https://github.com/viviivanov
