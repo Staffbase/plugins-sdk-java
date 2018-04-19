@@ -16,6 +16,8 @@ import java.nio.charset.Charset;
 import java.util.Objects;
 
 
+import com.staffbase.plugins.sdk.RemoteCall.DeleteInstanceCallHandlerInterface;
+import com.staffbase.plugins.sdk.RemoteCall.RemoteCallInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -67,6 +69,11 @@ public class SSOFacade {
    */
   private JwtConsumer jwtConsumer;
 
+  /**
+   * An instance handling remote calls
+   */
+  private RemoteCallInterface remoteCallHandler;
+
 
   /**********************************************
    * Constructors
@@ -83,15 +90,19 @@ public class SSOFacade {
    * Initialization
    **********************************************/
 
+  SSOFacade initialize(final RSAPublicKey rsaPublicKey) {
+    return this.initialize(rsaPublicKey, null);
+  }
+
   /**
    * Initialize this component by building up the consumer for JWT using the
    * pre-configured secret
    *
    * @param rsaPublicKey the RSA public key to be used for verification.
-   *
+   * @param remoteCallHandler a class handling remote calls
    * @return Fluent interface.
    */
-  SSOFacade initialize(final RSAPublicKey rsaPublicKey) {
+  SSOFacade initialize(final RSAPublicKey rsaPublicKey, final RemoteCallInterface remoteCallHandler) {
 
     if (logger.isDebugEnabled()) {
       logger.debug("Initializing single-sign-on manager SSOFacade. ");
@@ -111,6 +122,8 @@ public class SSOFacade {
       .setRequireNotBefore()
       .setRequireIssuedAt() 
       .build();
+
+    this.remoteCallHandler = remoteCallHandler;
 
     return this;
   }
@@ -152,7 +165,7 @@ public class SSOFacade {
               + "[instance_id=" + instanceId + "]");
         }
 
-        throw new SSOException("Missing or malformed instnance_id.");
+        throw new SSOException("Missing or malformed instance_id.");
       }
 
       if (logger.isDebugEnabled()) {
@@ -162,7 +175,23 @@ public class SSOFacade {
       }
 
       // Parse and return the container data.
-      return new SSOData(jwtClaims);
+      SSOData ssoData = new SSOData(jwtClaims);
+      if(ssoData.isDeleteInstanceCall() && this.remoteCallHandler != null) {
+        boolean result = true;
+        if (this.remoteCallHandler instanceof DeleteInstanceCallHandlerInterface){
+          result = ((DeleteInstanceCallHandlerInterface) this.remoteCallHandler).deleteInstance(instanceId);
+        } else {
+          logger.warn("Warning: An instance deletion call for instance $instanceId was not handled.");
+        }
+
+        if(result){
+          this.remoteCallHandler.exitSuccess();
+        } else {
+          this.remoteCallHandler.exitFailure();
+        }
+        exitRemoteCall();
+      }
+      return ssoData;
     } catch (final MalformedClaimException malformationException) {
       if (logger.isFatalEnabled()) {
         logger.fatal("Encountered malformed sso attempt.", malformationException);
@@ -176,5 +205,15 @@ public class SSOFacade {
 
       throw new SSOException(invalidJwtException.getMessage(), invalidJwtException);
     }
+  }
+
+
+  /**
+   * @throws SSOException if a remote call was not handled by the user
+   */
+  private void exitRemoteCall() throws SSOException {
+    String message = "Warning: The exit procedure for a remote call was not properly handled.";
+    logger.warn(message);
+    throw new SSOException(message);
   }
 }
