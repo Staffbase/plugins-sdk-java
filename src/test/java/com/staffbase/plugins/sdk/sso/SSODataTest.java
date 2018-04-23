@@ -11,6 +11,7 @@
 
 package com.staffbase.plugins.sdk.sso;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -28,6 +29,7 @@ import org.junit.Test;
 public class SSODataTest {
 
   private static final String ROLE_EDITOR = "editor";
+  private static final String REMOTE_CALL_DELETE = "delete";
 
   public static final String DATA_INSTANCE_ID = "55c79b6ee4b06c6fb19bd1e2";
   public static final String DATA_USER_ID = "541954c3e4b08bbdce1a340a";
@@ -103,5 +105,21 @@ public class SSODataTest {
     assertEquals(DATA_USER_ROLE.equals(ROLE_EDITOR), ssoData.isEditor());
 
     assertEquals(Locale.US, ssoData.getUserLocale().get());
+  }
+
+  /**
+   * Test deletion claim accessor.
+   * @throws MalformedClaimException
+   */
+  @Test
+  public void testWithDeleteJWTClaims() throws MalformedClaimException {
+
+    final JwtClaims claims = mock(JwtClaims.class);
+
+    when(claims.getClaimValue(SSOData.KEY_INSTANCE_ID, String.class)).thenReturn(DATA_INSTANCE_ID);
+    when(claims.getClaimValue(SSOData.KEY_USER_ID, String.class)).thenReturn(REMOTE_CALL_DELETE);
+
+    final SSOData ssoData = new SSOData(claims);
+    assertTrue(ssoData.isDeleteInstanceCall());
   }
 }
