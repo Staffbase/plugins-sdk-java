@@ -44,7 +44,13 @@ You can try to create a token from the received jwt.
  	try {
 		final SSOFacade ssoFac = SSOFacade.create(rsaPublicKey);
 		final SSOData ssoData = ssoFac.verify(jwToken);
-
+		
+		// If the plugin instance was deleted in Staffbase
+		if(ssoData.isDeleteInstanceCall()){
+		    this.handleSsoDeletionCall();
+		    return;
+		}
+		
 		request.setAttribute("instanceID", ssoData.getInstanceID());
 
 		return this.forward("/index.jsp");
