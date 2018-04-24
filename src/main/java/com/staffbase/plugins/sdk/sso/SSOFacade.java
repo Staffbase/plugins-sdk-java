@@ -67,7 +67,6 @@ public class SSOFacade {
    */
   private JwtConsumer jwtConsumer;
 
-
   /**********************************************
    * Constructors
    **********************************************/
@@ -88,7 +87,6 @@ public class SSOFacade {
    * pre-configured secret
    *
    * @param rsaPublicKey the RSA public key to be used for verification.
-   *
    * @return Fluent interface.
    */
   SSOFacade initialize(final RSAPublicKey rsaPublicKey) {
@@ -111,10 +109,8 @@ public class SSOFacade {
       .setRequireNotBefore()
       .setRequireIssuedAt() 
       .build();
-
     return this;
   }
-
 
   /**********************************************
    * Methods
@@ -152,7 +148,7 @@ public class SSOFacade {
               + "[instance_id=" + instanceId + "]");
         }
 
-        throw new SSOException("Missing or malformed instnance_id.");
+        throw new SSOException("Missing or malformed instance_id.");
       }
 
       if (logger.isDebugEnabled()) {

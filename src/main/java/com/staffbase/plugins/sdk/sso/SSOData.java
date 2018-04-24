@@ -38,6 +38,11 @@ public class SSOData {
   public static final String ROLE_EDITOR = "editor";
 
   /**
+   * The user id/subject to identify if the SSO call is an instance deletion call.
+   */
+  public static final String REMOTE_CALL_DELETE = "delete";
+
+  /**
    * The key in the JWT claims for fetching the requested plugin instance's
    * unique id.
    */
@@ -408,6 +413,18 @@ public class SSOData {
    */
   public boolean isEditor() {
     return ROLE_EDITOR.equals(this.userRole);
+  }
+
+  /**
+   * Check if the SSO call is an instance deletion call.
+   *
+   * If an editor deletes a plugin instance in Staffbase,
+   * this will be true.
+   *
+   * @return <code>true</code> if the SSO call is an instance deletion call
+   */
+  public boolean isDeleteInstanceCall() {
+    return REMOTE_CALL_DELETE.equals(this.userID);
   }
 
   /**
