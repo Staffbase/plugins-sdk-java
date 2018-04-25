@@ -47,7 +47,7 @@ You can try to create a token from the received jwt.
 		
 		// If the plugin instance was deleted in Staffbase
 		if(ssoData.isDeleteInstanceCall()){
-		    this.handleSsoDeletionCall();
+		    this.handleSsoDeletionCall(ssoData.getInstanceID());
 		    return;
 		}
 		
