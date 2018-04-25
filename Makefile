@@ -9,7 +9,7 @@ test:
 	mvn test
 
 deploy:
-	mvn clean deploy -P release
+	GPG_TTY=$(tty) mvn clean deploy -P release
 
 doc: doc-clean
 	mvn site
