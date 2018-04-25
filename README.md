@@ -1,4 +1,4 @@
-# Plugin SDK for Java
+:# Plugin SDK for Java
 
 If you are developing your own plugin for your Staffbase app we describe the authentication flow of a plugin at https://developers.staffbase.com/api/plugin-sso/. While this documentation just covers the conceptual ideas of the interface of plugins though – the so called Plugin SSO – we want to provide a library to help you develop your first plugin for Staffbase even faster. This SDK provides the basic functionality to parse and verify a provided token for Java.
 
@@ -12,7 +12,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 <dependency>
     <groupId>com.staffbase</groupId>
     <artifactId>plugins-sdk-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
@@ -20,7 +20,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 
 ```
 dependencies {
-    compile 'com.staffbase:plugins-sdk-java:1.0.0'
+    compile 'com.staffbase:plugins-sdk-java:1.1.1'
 }
 ```
 
