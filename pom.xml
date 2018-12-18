@@ -78,24 +78,12 @@
         <!--  Generate PackageVersion.java into this directory.  -->
         <packageVersion.dir>com/staffbase/plugins/sdk</packageVersion.dir>
         <packageVersion.package>${project.groupId}.json</packageVersion.package>
-        <jackson.version>2.7.4</jackson.version>
         <jose4j.version>0.5.1</jose4j.version>
         <log4j.version>2.5</log4j.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.0.53-beta</mockito.version>
     </properties>
     <dependencies>
-        <!-- Jackson -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
         <!-- JOSE4J -->
         <dependency>
             <groupId>org.bitbucket.b_c</groupId>
