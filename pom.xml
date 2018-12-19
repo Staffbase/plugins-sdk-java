@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.staffbase</groupId>
     <artifactId>plugins-sdk-java</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <packaging>jar</packaging>
     <name>
     ${project.groupId}:${project.artifactId}
@@ -31,7 +31,7 @@
         <developer>
             <name>Thilo Schmalfuß</name>
             <email>thilo@staffbase.com</email>
-            <timezone>GMT+1</timezone>
+            <timezone>Europe/Berlin</timezone>
             <organization>Staffbase</organization>
             <organizationUrl>https://staffbase.com</organizationUrl>
             <roles>
@@ -41,7 +41,7 @@
         <developer>
             <name>Tilo Zemke</name>
             <email>tilo@staffbase.com</email>
-            <timezone>GMT+1</timezone>
+            <timezone>Europe/Berlin</timezone>
             <organization>Staffbase</organization>
             <organizationUrl>https://staffbase.com</organizationUrl>
             <roles>
@@ -51,11 +51,21 @@
         <developer>
             <name>Vitaliy Ivanov</name>
             <email>vitaliy@staffbase.com</email>
-            <timezone>GMT+1</timezone>
+            <timezone>Europe/Berlin</timezone>
             <organization>Staffbase</organization>
             <organizationUrl>https://staffbase.com</organizationUrl>
             <roles>
                 <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Felix Bytow</name>
+            <email>felix@staffbase.com</email>
+            <timezone>Europe/Berlin</timezone>
+            <organization>Staffbase</organization>
+            <organizationUrl>https://staffbase.com</organizationUrl>
+            <roles>
+                <role>Scrum Master</role>
             </roles>
         </developer>
     </developers>
