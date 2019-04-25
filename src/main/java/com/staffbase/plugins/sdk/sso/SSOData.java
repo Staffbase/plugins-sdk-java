@@ -30,6 +30,10 @@ public class SSOData {
    * Constants
    **********************************************/
 
+  public static final String KEY_BRANCH_ID = "branch_id";
+
+  public static final String KEY_BRANCH_SLUG = "branch_slug";
+
   /**
    * The name of the role which is sent by staffbase to a plugin, if the requesting
    * user may alter the plugin's contents, i.e. has an editing permission
@@ -126,19 +130,55 @@ public class SSOData {
    */
   public static final String KEY_TAGS = "tags";
 
-  public static final String KEY_BRANCH_ID = "branch_id";
-
-  public static final String KEY_BRANCH_SLUG = "branch_slug";
-
   /**********************************************
    * Members
    **********************************************/
+
+  /**
+   * The name of the audience the staffbase's SSO data is dedicated.
+   */
+  private final String audience;
+
+  private final String branchID;
+
+  private final String branchSlug;
+
+  /**
+   * the the type of the accessing entity making the request using staffbase's SSO.
+   */
+  private final String entityType;
 
   /**
    * The unique id of the specific plugin instance that was requested using
    * staffbase's SSO.
    */
   private final String instanceID;
+
+  /**
+   * The name of the issuing authority for Stabase's SSO .
+   */
+  private final String issuer;
+
+  /**
+   * The Name of the specific plugin instance that was requested using
+   * staffbase's SSO.
+   */
+  private final String instanceName;
+
+  /**
+   * The color of the text that is configured in the Staffbase app.
+   */
+  private final String themeTextColor;
+
+  /**
+   * The color of the background that is configured in the Staffbase app.
+   */
+  private final String themeBackgroundColor;
+
+  /**
+   * The tags that are configured in the Staffbase app.
+   */
+  private final List<String> tags;
 
   /**
    * The unique id of the staffbase user making the request to the plugin using staffbase's
@@ -162,45 +202,9 @@ public class SSOData {
   private final String userLastName;
 
   /**
-   * The name of the issuing authority for Stabase's SSO .
-   */
-  private final String issuer;
-
-  /**
-   * The name of the audience the staffbase's SSO data is dedicated.
-   */
-  private final String audience;
-
-  /**
-   * The Name of the specific plugin instance that was requested using
-   * staffbase's SSO.
-   */
-  private final String instanceName;
-
-  /**
    * The full name of the user making the request using staffbase's SSO.
    */
   private final String userFullName;
-
-  /**
-   * the the type of the accessing entity making the request using staffbase's SSO.
-   */
-  private final String entityType;
-
-  /**
-   * The color of the text that is configured in the Staffbase app.
-   */
-  private final String themeTextColor;
-
-  /**
-   * The color of the background that is configured in the Staffbase app.
-   */
-  private final String themeBackgroundColor;
-
-  /**
-   * The tags that are configured in the Staffbase app.
-   */
-  private final List<String> tags;
 
   /**
    * The locale of the user requesting the plugin instance.
@@ -220,11 +224,6 @@ public class SSOData {
    */
   private final String userRole;
 
-  private final String branchId;
-
-  private final String branchSlug;
-
-
   /**********************************************
    * Constructors
    **********************************************/
@@ -233,6 +232,8 @@ public class SSOData {
 
     Objects.requireNonNull(jwtClaims);
 
+    this.branchID = jwtClaims.getClaimValue(KEY_BRANCH_ID, String.class);
+    this.branchSlug = jwtClaims.getClaimValue(KEY_BRANCH_SLUG, String.class);
     this.instanceID = jwtClaims.getClaimValue(KEY_INSTANCE_ID, String.class);
     this.userID = jwtClaims.getClaimValue(KEY_USER_ID, String.class);
     this.userExternalID = jwtClaims.getClaimValue(KEY_USER_EXTERNAL_ID, String.class);
@@ -248,13 +249,19 @@ public class SSOData {
     this.themeTextColor = jwtClaims.getClaimValue(KEY_THEME_TEXT_COLOR, String.class);
     this.themeBackgroundColor = jwtClaims.getClaimValue(KEY_THEME_BACKGROUND_COLOR, String.class);
     this.tags = jwtClaims.getClaimValue(KEY_TAGS, List.class);
-    this.branchId = jwtClaims.getClaimValue(KEY_BRANCH_ID, String.class);
-    this.branchSlug = jwtClaims.getClaimValue(KEY_BRANCH_SLUG, String.class);
   }
 
   /**********************************************
    * Getters
    **********************************************/
+
+  public String getBranchID() {
+      return this.branchID;
+  }
+
+  public String getBranchSlug() {
+      return this.branchSlug;
+  }
 
   /**
    * Get the name of the issuing authority for Stabase's SSO .
@@ -449,19 +456,11 @@ public class SSOData {
     return Optional.ofNullable(this.tags);
   }
 
-  public String getBranchId() {
-    return this.branchId;
-  }
-
-  public String getBranchSlug() {
-    return this.branchSlug;
-  }
-
   @Override
   public String toString() {
     return "SSOData ["+
   " instanceID="+ this.instanceID+
-  ", branchId="+ this.branchId+
+  ", branchID="+ this.branchID+
   ", branchSlug="+ this.branchSlug+
   ", userID="+ this.userID+
   ", userExternalID="+ this.userExternalID+

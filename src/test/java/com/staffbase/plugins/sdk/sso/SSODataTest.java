@@ -105,7 +105,7 @@ public class SSODataTest {
     assertEquals(DATA_THEME_TEXT_COLOR, ssoData.getThemeTextColor().get());
     assertEquals(DATA_THEME_BACKGROUND_COLOR, ssoData.getThemeBackgroundColor().get());
     assertEquals(DATA_TAGS, ssoData.getTags().get());
-    assertEquals(DATA_BRANCH_ID, ssoData.getBranchId());
+    assertEquals(DATA_BRANCH_ID, ssoData.getBranchID());
     assertEquals(DATA_BRANCH_SLUG, ssoData.getBranchSlug());
 
     assertEquals(DATA_USER_ROLE.equals(ROLE_EDITOR), ssoData.isEditor());
