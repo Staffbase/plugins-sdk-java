@@ -2,7 +2,7 @@
  * SSO implementation, based on this doc:
  * https://developers.staffbase.com/api/plugin-sso/
  *
- * @copyright 2017 Staffbase GmbH. 
+ * @copyright 2017 Staffbase GmbH.
  * @author    Thilo Schmalfuß
  * @author    Vitaliy Ivanov
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -109,22 +109,26 @@ public class SSOData {
   public static final String KEY_ENTITY_TYPE = "type";
 
   /**
-   * The key in the JWT claims for fetching the color of the text that 
+   * The key in the JWT claims for fetching the color of the text that
    * is configured in the Staffbase app.
    */
   public static final String KEY_THEME_TEXT_COLOR = "theming_text";
 
   /**
    * The key in the JWT claims for fetching the color of the background
-   * that is configured in the Staffbase app. 
+   * that is configured in the Staffbase app.
    */
   public static final String KEY_THEME_BACKGROUND_COLOR = "theming_bg";
 
   /**
    * The key in the JWT claims for fetching the list of tags
-   * that are configured in the Staffbase app. 
+   * that are configured in the Staffbase app.
    */
   public static final String KEY_TAGS = "tags";
+
+  public static final String KEY_BRANCH_ID = "branch_id";
+
+  public static final String KEY_BRANCH_SLUG = "branch_slug";
 
   /**********************************************
    * Members
@@ -216,6 +220,10 @@ public class SSOData {
    */
   private final String userRole;
 
+  private final String branchId;
+
+  private final String branchSlug;
+
 
   /**********************************************
    * Constructors
@@ -240,80 +248,82 @@ public class SSOData {
     this.themeTextColor = jwtClaims.getClaimValue(KEY_THEME_TEXT_COLOR, String.class);
     this.themeBackgroundColor = jwtClaims.getClaimValue(KEY_THEME_BACKGROUND_COLOR, String.class);
     this.tags = jwtClaims.getClaimValue(KEY_TAGS, List.class);
+    this.branchId = jwtClaims.getClaimValue(KEY_BRANCH_ID, String.class);
+    this.branchSlug = jwtClaims.getClaimValue(KEY_BRANCH_SLUG, String.class);
   }
 
   /**********************************************
    * Getters
    **********************************************/
 
-  /** 
+  /**
    * Get the name of the issuing authority for Stabase's SSO .
    *
    * @see #issuer
    * @return the name of the issuing authority
    */
-  public Optional<String> getIssuer() { 
+  public Optional<String> getIssuer() {
     return Optional.ofNullable(this.issuer);
   }
 
-  /** 
+  /**
    * Get the name of the audience the staffbase's SSO data is dedicated.
    *
    * @see #audience
    * @return the name of the audience the data is dedicated to
    */
-  public Optional<String> getAudience() { 
+  public Optional<String> getAudience() {
     return Optional.ofNullable(this.audience);
   }
 
-  /** 
+  /**
    * Get the Name of the specific plugin instance that was requested using
    * staffbase's SSO.
    *
    * @see #instanceName
    * @return the Name of the specific plugin instance
    */
-  public Optional<String> getInstanceName() { 
+  public Optional<String> getInstanceName() {
     return Optional.ofNullable(this.instanceName);
   }
 
-  /** 
+  /**
    * Get the full name of the user making the request using staffbase's SSO.
    *
    * @see #userFullName
    * @return the full name of the user
    */
-  public Optional<String> getUserFullName() { 
+  public Optional<String> getUserFullName() {
     return Optional.ofNullable(this.userFullName);
   }
 
-  /** 
+  /**
    * Get the type of the accessing entity making the request using staffbase's SSO.
    *
    * @see #entityType
    * @return type of the accessing entity
    */
-  public Optional<String> getEntityType() { 
+  public Optional<String> getEntityType() {
     return Optional.ofNullable(this.entityType);
   }
 
-  /** 
+  /**
    * Get the color of the text that is configured in the Staffbase app.
    *
    * @see #themeTextColor
-   * @return the hex color of the text 
+   * @return the hex color of the text
    */
-  public Optional<String> getThemeTextColor() { 
+  public Optional<String> getThemeTextColor() {
     return Optional.ofNullable(this.themeTextColor);
   }
 
-  /** 
+  /**
    * Get the color of the background that is configured in the Staffbase app.
    *
    * @see #themeBackgroundColor
-   * @return the hex color of the background 
+   * @return the hex color of the background
    */
-  public Optional<String> getThemeBackgroundColor() { 
+  public Optional<String> getThemeBackgroundColor() {
     return Optional.ofNullable(this.themeBackgroundColor);
   }
 
@@ -439,10 +449,20 @@ public class SSOData {
     return Optional.ofNullable(this.tags);
   }
 
+  public String getBranchId() {
+    return this.branchId;
+  }
+
+  public String getBranchSlug() {
+    return this.branchSlug;
+  }
+
   @Override
   public String toString() {
     return "SSOData ["+
   " instanceID="+ this.instanceID+
+  ", branchId="+ this.branchId+
+  ", branchSlug="+ this.branchSlug+
   ", userID="+ this.userID+
   ", userExternalID="+ this.userExternalID+
   ", userFirstName="+ this.userFirstName+
