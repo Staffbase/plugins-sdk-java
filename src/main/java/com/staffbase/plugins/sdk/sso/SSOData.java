@@ -30,8 +30,14 @@ public class SSOData {
    * Constants
    **********************************************/
 
+  /**
+   * The key in the JWT claims for the fetching the requested branch id for the installation
+   */
   public static final String KEY_BRANCH_ID = "branch_id";
 
+  /**
+   * The key in the JWT claims for the fetching the requested branch slug for the installation
+   */
   public static final String KEY_BRANCH_SLUG = "branch_slug";
 
   /**
@@ -139,8 +145,14 @@ public class SSOData {
    */
   private final String audience;
 
+  /**
+   * The id to know which branch an installation belongs to
+   */
   private final String branchID;
 
+  /**
+   * The name of the branch an installation belongs to
+   */
   private final String branchSlug;
 
   /**
