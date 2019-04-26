@@ -2,7 +2,7 @@
  * SSO implementation, based on this doc:
  * https://developers.staffbase.com/api/plugin-sso/
  *
- * @copyright 2017 Staffbase GmbH. 
+ * @copyright 2017 Staffbase GmbH.
  * @author    Thilo Schmalfuß
  * @author    Vitaliy Ivanov
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -29,6 +29,16 @@ public class SSOData {
   /**********************************************
    * Constants
    **********************************************/
+
+  /**
+   * The key in the JWT claims for the fetching the requested branch id for the installation
+   */
+  public static final String KEY_BRANCH_ID = "branch_id";
+
+  /**
+   * The key in the JWT claims for the fetching the requested branch slug for the installation
+   */
+  public static final String KEY_BRANCH_SLUG = "branch_slug";
 
   /**
    * The name of the role which is sent by staffbase to a plugin, if the requesting
@@ -109,20 +119,20 @@ public class SSOData {
   public static final String KEY_ENTITY_TYPE = "type";
 
   /**
-   * The key in the JWT claims for fetching the color of the text that 
+   * The key in the JWT claims for fetching the color of the text that
    * is configured in the Staffbase app.
    */
   public static final String KEY_THEME_TEXT_COLOR = "theming_text";
 
   /**
    * The key in the JWT claims for fetching the color of the background
-   * that is configured in the Staffbase app. 
+   * that is configured in the Staffbase app.
    */
   public static final String KEY_THEME_BACKGROUND_COLOR = "theming_bg";
 
   /**
    * The key in the JWT claims for fetching the list of tags
-   * that are configured in the Staffbase app. 
+   * that are configured in the Staffbase app.
    */
   public static final String KEY_TAGS = "tags";
 
@@ -131,10 +141,56 @@ public class SSOData {
    **********************************************/
 
   /**
+   * The name of the audience the staffbase's SSO data is dedicated.
+   */
+  private final String audience;
+
+  /**
+   * The id to know which branch an installation belongs to
+   */
+  private final String branchID;
+
+  /**
+   * The name of the branch an installation belongs to
+   */
+  private final String branchSlug;
+
+  /**
+   * the the type of the accessing entity making the request using staffbase's SSO.
+   */
+  private final String entityType;
+
+  /**
    * The unique id of the specific plugin instance that was requested using
    * staffbase's SSO.
    */
   private final String instanceID;
+
+  /**
+   * The name of the issuing authority for Stabase's SSO .
+   */
+  private final String issuer;
+
+  /**
+   * The Name of the specific plugin instance that was requested using
+   * staffbase's SSO.
+   */
+  private final String instanceName;
+
+  /**
+   * The color of the text that is configured in the Staffbase app.
+   */
+  private final String themeTextColor;
+
+  /**
+   * The color of the background that is configured in the Staffbase app.
+   */
+  private final String themeBackgroundColor;
+
+  /**
+   * The tags that are configured in the Staffbase app.
+   */
+  private final List<String> tags;
 
   /**
    * The unique id of the staffbase user making the request to the plugin using staffbase's
@@ -158,45 +214,9 @@ public class SSOData {
   private final String userLastName;
 
   /**
-   * The name of the issuing authority for Stabase's SSO .
-   */
-  private final String issuer;
-
-  /**
-   * The name of the audience the staffbase's SSO data is dedicated.
-   */
-  private final String audience;
-
-  /**
-   * The Name of the specific plugin instance that was requested using
-   * staffbase's SSO.
-   */
-  private final String instanceName;
-
-  /**
    * The full name of the user making the request using staffbase's SSO.
    */
   private final String userFullName;
-
-  /**
-   * the the type of the accessing entity making the request using staffbase's SSO.
-   */
-  private final String entityType;
-
-  /**
-   * The color of the text that is configured in the Staffbase app.
-   */
-  private final String themeTextColor;
-
-  /**
-   * The color of the background that is configured in the Staffbase app.
-   */
-  private final String themeBackgroundColor;
-
-  /**
-   * The tags that are configured in the Staffbase app.
-   */
-  private final List<String> tags;
 
   /**
    * The locale of the user requesting the plugin instance.
@@ -216,7 +236,6 @@ public class SSOData {
    */
   private final String userRole;
 
-
   /**********************************************
    * Constructors
    **********************************************/
@@ -225,6 +244,8 @@ public class SSOData {
 
     Objects.requireNonNull(jwtClaims);
 
+    this.branchID = jwtClaims.getClaimValue(KEY_BRANCH_ID, String.class);
+    this.branchSlug = jwtClaims.getClaimValue(KEY_BRANCH_SLUG, String.class);
     this.instanceID = jwtClaims.getClaimValue(KEY_INSTANCE_ID, String.class);
     this.userID = jwtClaims.getClaimValue(KEY_USER_ID, String.class);
     this.userExternalID = jwtClaims.getClaimValue(KEY_USER_EXTERNAL_ID, String.class);
@@ -246,74 +267,82 @@ public class SSOData {
    * Getters
    **********************************************/
 
-  /** 
+  public String getBranchID() {
+      return this.branchID;
+  }
+
+  public String getBranchSlug() {
+      return this.branchSlug;
+  }
+
+  /**
    * Get the name of the issuing authority for Stabase's SSO .
    *
    * @see #issuer
    * @return the name of the issuing authority
    */
-  public Optional<String> getIssuer() { 
+  public Optional<String> getIssuer() {
     return Optional.ofNullable(this.issuer);
   }
 
-  /** 
+  /**
    * Get the name of the audience the staffbase's SSO data is dedicated.
    *
    * @see #audience
    * @return the name of the audience the data is dedicated to
    */
-  public Optional<String> getAudience() { 
+  public Optional<String> getAudience() {
     return Optional.ofNullable(this.audience);
   }
 
-  /** 
+  /**
    * Get the Name of the specific plugin instance that was requested using
    * staffbase's SSO.
    *
    * @see #instanceName
    * @return the Name of the specific plugin instance
    */
-  public Optional<String> getInstanceName() { 
+  public Optional<String> getInstanceName() {
     return Optional.ofNullable(this.instanceName);
   }
 
-  /** 
+  /**
    * Get the full name of the user making the request using staffbase's SSO.
    *
    * @see #userFullName
    * @return the full name of the user
    */
-  public Optional<String> getUserFullName() { 
+  public Optional<String> getUserFullName() {
     return Optional.ofNullable(this.userFullName);
   }
 
-  /** 
+  /**
    * Get the type of the accessing entity making the request using staffbase's SSO.
    *
    * @see #entityType
    * @return type of the accessing entity
    */
-  public Optional<String> getEntityType() { 
+  public Optional<String> getEntityType() {
     return Optional.ofNullable(this.entityType);
   }
 
-  /** 
+  /**
    * Get the color of the text that is configured in the Staffbase app.
    *
    * @see #themeTextColor
-   * @return the hex color of the text 
+   * @return the hex color of the text
    */
-  public Optional<String> getThemeTextColor() { 
+  public Optional<String> getThemeTextColor() {
     return Optional.ofNullable(this.themeTextColor);
   }
 
-  /** 
+  /**
    * Get the color of the background that is configured in the Staffbase app.
    *
    * @see #themeBackgroundColor
-   * @return the hex color of the background 
+   * @return the hex color of the background
    */
-  public Optional<String> getThemeBackgroundColor() { 
+  public Optional<String> getThemeBackgroundColor() {
     return Optional.ofNullable(this.themeBackgroundColor);
   }
 
@@ -443,6 +472,8 @@ public class SSOData {
   public String toString() {
     return "SSOData ["+
   " instanceID="+ this.instanceID+
+  ", branchID="+ this.branchID+
+  ", branchSlug="+ this.branchSlug+
   ", userID="+ this.userID+
   ", userExternalID="+ this.userExternalID+
   ", userFirstName="+ this.userFirstName+

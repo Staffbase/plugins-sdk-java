@@ -2,7 +2,7 @@
  * SSO implementation test, based on this doc:
  * https://developers.staffbase.com/api/plugin-sso/
  *
- * @copyright 2017 Staffbase GmbH. 
+ * @copyright 2017 Staffbase GmbH.
  * @author    Thilo Schmalfuß
  * @author    Vitaliy Ivanov
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -32,6 +32,8 @@ public class SSODataTest {
   private static final String REMOTE_CALL_DELETE = "delete";
 
   public static final String DATA_INSTANCE_ID = "55c79b6ee4b06c6fb19bd1e2";
+  public static final String DATA_BRANCH_ID = "56a6306f0cf23b042e0ae307";
+  public static final String DATA_BRANCH_SLUG = "staffbasetest";
   public static final String DATA_USER_ID = "541954c3e4b08bbdce1a340a";
   public static final String DATA_USER_EXTERNAL_ID = "jdoe";
   public static final String DATA_USER_FIRST_NAME = "John";
@@ -82,6 +84,8 @@ public class SSODataTest {
     when(claims.getClaimValue(SSOData.KEY_THEME_TEXT_COLOR, String.class)).thenReturn(DATA_THEME_TEXT_COLOR);
     when(claims.getClaimValue(SSOData.KEY_THEME_BACKGROUND_COLOR, String.class)).thenReturn(DATA_THEME_BACKGROUND_COLOR);
     when(claims.getClaimValue(SSOData.KEY_TAGS, List.class)).thenReturn(DATA_TAGS);
+    when(claims.getClaimValue(SSOData.KEY_BRANCH_ID, String.class)).thenReturn(DATA_BRANCH_ID);
+    when(claims.getClaimValue(SSOData.KEY_BRANCH_SLUG, String.class)).thenReturn(DATA_BRANCH_SLUG);
 
     final SSOData ssoData = new SSOData(claims);
 
@@ -101,6 +105,8 @@ public class SSODataTest {
     assertEquals(DATA_THEME_TEXT_COLOR, ssoData.getThemeTextColor().get());
     assertEquals(DATA_THEME_BACKGROUND_COLOR, ssoData.getThemeBackgroundColor().get());
     assertEquals(DATA_TAGS, ssoData.getTags().get());
+    assertEquals(DATA_BRANCH_ID, ssoData.getBranchID());
+    assertEquals(DATA_BRANCH_SLUG, ssoData.getBranchSlug());
 
     assertEquals(DATA_USER_ROLE.equals(ROLE_EDITOR), ssoData.isEditor());
 
