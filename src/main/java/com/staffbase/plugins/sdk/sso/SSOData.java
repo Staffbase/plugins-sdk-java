@@ -248,10 +248,12 @@ public class SSOData {
    */
   private final String userRole;
 
-  /**********************************************
-   * Constructors
-   **********************************************/
-
+  /**
+   * Constructor of the SSOData class
+   *
+   * @param jwtClaims The claims of an decoded JWT token
+   * @throws MalformedClaimException The jwt token is invalid
+   */
   public SSOData(final JwtClaims jwtClaims) throws MalformedClaimException {
 
     Objects.requireNonNull(jwtClaims);
