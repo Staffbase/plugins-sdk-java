@@ -59,6 +59,11 @@ public class SSOData {
   public static final String KEY_INSTANCE_ID = "instance_id";
 
   /**
+   * The key in the JWT claims for fetching a cipher of the session
+   */
+  public static final String KEY_SESSION_ID = "sid";
+
+  /**
    * The key in the JWT claims for fetching the requesting user's unique id.
    */
   public static final String KEY_USER_ID = "sub";
@@ -167,6 +172,8 @@ public class SSOData {
   private final String instanceID;
 
   /**
+   * The unique id of the specific plugin instance that was requested using
+  /**
    * The name of the issuing authority for Stabase's SSO .
    */
   private final String issuer;
@@ -176,6 +183,11 @@ public class SSOData {
    * staffbase's SSO.
    */
   private final String instanceName;
+
+  /**
+   * The unique id of the session as a cipher
+   */
+  private final String sessionID;
 
   /**
    * The color of the text that is configured in the Staffbase app.
@@ -247,6 +259,7 @@ public class SSOData {
     this.branchID = jwtClaims.getClaimValue(KEY_BRANCH_ID, String.class);
     this.branchSlug = jwtClaims.getClaimValue(KEY_BRANCH_SLUG, String.class);
     this.instanceID = jwtClaims.getClaimValue(KEY_INSTANCE_ID, String.class);
+    this.sessionID = jwtClaims.getClaimValue(KEY_SESSION_ID, String.class);
     this.userID = jwtClaims.getClaimValue(KEY_USER_ID, String.class);
     this.userExternalID = jwtClaims.getClaimValue(KEY_USER_EXTERNAL_ID, String.class);
     this.userFirstName = jwtClaims.getClaimValue(KEY_USER_FIRST_NAME, String.class);
@@ -304,6 +317,16 @@ public class SSOData {
    */
   public Optional<String> getInstanceName() {
     return Optional.ofNullable(this.instanceName);
+  }
+
+  /**
+   * Get a cipher of the session id that was requested using staffbase's SSO.
+   *
+   * @see #sessionID
+   * @return a cipher of the session id
+   */
+  public Optional<String> getSessionId() {
+    return Optional.ofNullable(this.sessionID);
   }
 
   /**
@@ -472,6 +495,7 @@ public class SSOData {
   public String toString() {
     return "SSOData ["+
   " instanceID="+ this.instanceID+
+  ", sid="+ this.sessionID+
   ", branchID="+ this.branchID+
   ", branchSlug="+ this.branchSlug+
   ", userID="+ this.userID+
