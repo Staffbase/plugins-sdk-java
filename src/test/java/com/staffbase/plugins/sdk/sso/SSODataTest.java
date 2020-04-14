@@ -32,6 +32,7 @@ public class SSODataTest {
   private static final String REMOTE_CALL_DELETE = "delete";
 
   public static final String DATA_INSTANCE_ID = "55c79b6ee4b06c6fb19bd1e2";
+  public static final String DATA_SESSION_ID = "vQt7mw67qgJZHddZ5FuUY/YPo";
   public static final String DATA_BRANCH_ID = "56a6306f0cf23b042e0ae307";
   public static final String DATA_BRANCH_SLUG = "staffbasetest";
   public static final String DATA_USER_ID = "541954c3e4b08bbdce1a340a";
@@ -70,6 +71,7 @@ public class SSODataTest {
     final JwtClaims claims = mock(JwtClaims.class);
 
     when(claims.getClaimValue(SSOData.KEY_INSTANCE_ID, String.class)).thenReturn(DATA_INSTANCE_ID);
+    when(claims.getClaimValue(SSOData.KEY_SESSION_ID, String.class)).thenReturn(DATA_SESSION_ID);
     when(claims.getClaimValue(SSOData.KEY_USER_ID, String.class)).thenReturn(DATA_USER_ID);
     when(claims.getClaimValue(SSOData.KEY_USER_EXTERNAL_ID, String.class)).thenReturn(DATA_USER_EXTERNAL_ID);
     when(claims.getClaimValue(SSOData.KEY_USER_FIRST_NAME, String.class)).thenReturn(DATA_USER_FIRST_NAME);
@@ -90,6 +92,7 @@ public class SSODataTest {
     final SSOData ssoData = new SSOData(claims);
 
     assertEquals(DATA_INSTANCE_ID, ssoData.getInstanceID());
+    assertEquals(DATA_SESSION_ID, ssoData.getSessionId().get());
     assertEquals(DATA_USER_ID, ssoData.getUserID().get());
     assertEquals(DATA_USER_EXTERNAL_ID, ssoData.getUserExternalID().get());
     assertEquals(DATA_USER_FIRST_NAME, ssoData.getUserFirstName().get());
