@@ -12,7 +12,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 <dependency>
     <groupId>com.staffbase</groupId>
     <artifactId>plugins-sdk-java</artifactId>
-    <version>1.1.1</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -20,7 +20,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 
 ```
 dependencies {
-    compile 'com.staffbase:plugins-sdk-java:1.1.1'
+    compile 'com.staffbase:plugins-sdk-java:1.2.0'
 }
 ```
 
