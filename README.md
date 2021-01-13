@@ -79,6 +79,6 @@ To run the tests a simple `# mvn test` command in the root directory will suffic
 
 ## License
 
-Copyright 2017 Staffbase GmbH.
+Copyright 2017-2021 Staffbase GmbH.
 
 Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
