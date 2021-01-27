@@ -1,8 +1,8 @@
 /**
  * SSO implementation, based on this doc:
- * https://developers.staffbase.com/api/plugin-sso/
+ * https://developers.staffbase.com/guide/customplugin-overview
  *
- * @copyright 2017 Staffbase GmbH.
+ * @copyright 2020 Staffbase GmbH.
  * @author    Thilo Schmalfuß
  * @author    Vitaliy Ivanov
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -75,12 +75,22 @@ public class SSOData {
   public static final String KEY_USER_EXTERNAL_ID = "external_id";
 
   /**
+   * The key in the JWT claims for fetching the requesting user's username.
+   */
+  public static final String KEY_USER_USERNAME= "username";
+
+    /**
+   * The key in the JWT claims for fetching the requesting user's primary email address.
+   */
+  public static final String KEY_USER_PRIMARY_EMAIL_ADDRESS = "primary_email_address";
+
+  /**
    * The key in the JWT claims for fetching the requesting user's first name.
    */
   public static final String KEY_USER_FIRST_NAME = "given_name";
 
   /**
-   * The key in the JWT claims for fetching the requesting users last name.
+   * The key in the JWT claims for fetching the requesting user's last name.
    */
   public static final String KEY_USER_LAST_NAME = "family_name";
 
@@ -216,6 +226,16 @@ public class SSOData {
   private final String userExternalID;
 
   /**
+   * The username of the requesting user, if given.
+   */
+  private final String userUsername;
+
+  /**
+   * The primary email address of the requesting user, if given.
+   */
+  private final String userPrimaryEmailAddress;
+
+  /**
    * The first, i.e. given name of the user making the request using staffbase's SSO.
    */
   private final String userFirstName;
@@ -264,6 +284,8 @@ public class SSOData {
     this.sessionID = jwtClaims.getClaimValue(KEY_SESSION_ID, String.class);
     this.userID = jwtClaims.getClaimValue(KEY_USER_ID, String.class);
     this.userExternalID = jwtClaims.getClaimValue(KEY_USER_EXTERNAL_ID, String.class);
+    this.userUsername = jwtClaims.getClaimValue(KEY_USER_USERNAME, String.class);
+    this.userPrimaryEmailAddress = jwtClaims.getClaimValue(KEY_USER_PRIMARY_EMAIL_ADDRESS, String.class);
     this.userFirstName = jwtClaims.getClaimValue(KEY_USER_FIRST_NAME, String.class);
     this.userLastName = jwtClaims.getClaimValue(KEY_USER_LAST_NAME, String.class);
     this.userRole = jwtClaims.getClaimValue(KEY_USER_ROLE, String.class);
@@ -404,6 +426,26 @@ public class SSOData {
   }
 
   /**
+   * Get the username of the requesting user, if given.
+   *
+   * @see #userUsername
+   * @return the requesting user's username
+   */
+  public Optional<String> getUserUsername() {
+    return Optional.ofNullable(this.userUsername);
+  }
+
+  /**
+   * Get the primary email address of the requesting user, if given.
+   *
+   * @see #userPrimaryEmailAddress
+   * @return the requesting user's primary email address
+   */
+  public Optional<String> getUserPrimaryEmailAddress() {
+    return Optional.ofNullable(this.userPrimaryEmailAddress);
+  }
+
+  /**
    * Get the first, i.e. given name of the user making the request using staffbase's
    * SSO.
    *
@@ -502,6 +544,8 @@ public class SSOData {
   ", branchSlug="+ this.branchSlug+
   ", userID="+ this.userID+
   ", userExternalID="+ this.userExternalID+
+  ", userUsername="+ this.userUsername+
+  ", userPrimaryEmailAddress="+ this.userPrimaryEmailAddress+
   ", userFirstName="+ this.userFirstName+
   ", userLastName="+ this.userLastName+
   ", userRole="+ this.userRole+

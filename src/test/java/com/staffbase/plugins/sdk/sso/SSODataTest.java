@@ -1,8 +1,8 @@
 /**
  * SSO implementation test, based on this doc:
- * https://developers.staffbase.com/api/plugin-sso/
+ * https://developers.staffbase.com/guide/customplugin-overview
  *
- * @copyright 2017 Staffbase GmbH.
+ * @copyright 2020 Staffbase GmbH.
  * @author    Thilo Schmalfuß
  * @author    Vitaliy Ivanov
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -37,6 +37,8 @@ public class SSODataTest {
   public static final String DATA_BRANCH_SLUG = "staffbasetest";
   public static final String DATA_USER_ID = "541954c3e4b08bbdce1a340a";
   public static final String DATA_USER_EXTERNAL_ID = "jdoe";
+  public static final String DATA_USER_USERNAME = "john.doe";
+  public static final String DATA_USER_PRIMARY_EMAIL_ADDRESS = "jdoe@email.com";
   public static final String DATA_USER_FIRST_NAME = "John";
   public static final String DATA_USER_LAST_NAME = "Doe";
   public static final String DATA_USER_ROLE = "editor";
@@ -74,6 +76,8 @@ public class SSODataTest {
     when(claims.getClaimValue(SSOData.KEY_SESSION_ID, String.class)).thenReturn(DATA_SESSION_ID);
     when(claims.getClaimValue(SSOData.KEY_USER_ID, String.class)).thenReturn(DATA_USER_ID);
     when(claims.getClaimValue(SSOData.KEY_USER_EXTERNAL_ID, String.class)).thenReturn(DATA_USER_EXTERNAL_ID);
+    when(claims.getClaimValue(SSOData.KEY_USER_USERNAME, String.class)).thenReturn(DATA_USER_USERNAME);
+    when(claims.getClaimValue(SSOData.KEY_USER_PRIMARY_EMAIL_ADDRESS, String.class)).thenReturn(DATA_USER_PRIMARY_EMAIL_ADDRESS);
     when(claims.getClaimValue(SSOData.KEY_USER_FIRST_NAME, String.class)).thenReturn(DATA_USER_FIRST_NAME);
     when(claims.getClaimValue(SSOData.KEY_USER_LAST_NAME, String.class)).thenReturn(DATA_USER_LAST_NAME);
     when(claims.getClaimValue(SSOData.KEY_USER_ROLE, String.class)).thenReturn(DATA_USER_ROLE);
@@ -95,6 +99,8 @@ public class SSODataTest {
     assertEquals(DATA_SESSION_ID, ssoData.getSessionId().get());
     assertEquals(DATA_USER_ID, ssoData.getUserID().get());
     assertEquals(DATA_USER_EXTERNAL_ID, ssoData.getUserExternalID().get());
+    assertEquals(DATA_USER_USERNAME, ssoData.getUserUsername().get());
+    assertEquals(DATA_USER_PRIMARY_EMAIL_ADDRESS, ssoData.getUserPrimaryEmailAddress().get());
     assertEquals(DATA_USER_FIRST_NAME, ssoData.getUserFirstName().get());
     assertEquals(DATA_USER_LAST_NAME, ssoData.getUserLastName().get());
     assertEquals(DATA_USER_ROLE, ssoData.getUserRole().get());
