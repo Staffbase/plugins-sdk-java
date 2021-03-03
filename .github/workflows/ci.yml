@@ -1,0 +1,54 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-20.04
+    name: Java ${{ matrix.java }} Test
+    strategy:
+      matrix:
+        # test against latest update of each major Java version, as well as specific updates of LTS versions:
+        java: [ 8, 10, 11, 12, 13, 14]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK ${{ matrix.java }}
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.java }}
+
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    - name: Run UI tests
+      run: make test
+
+  continuous-delivery:
+    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')
+    needs: build-test
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v2
+
+    - name: Install Java and Maven
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - name: Release Maven package
+      uses: samuelmeuli/action-maven-publish@v1
+      with:
+        gpg_private_key: ${{ secrets.gpg_private_key }}
+        gpg_passphrase: ${{ secrets.gpg_passphrase }}
+        nexus_username: ${{ secrets.nexus_username }}
+        nexus_password: ${{ secrets.nexus_password }}

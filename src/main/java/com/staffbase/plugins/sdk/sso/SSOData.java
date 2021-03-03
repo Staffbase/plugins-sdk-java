@@ -304,10 +304,22 @@ public class SSOData {
    * Getters
    **********************************************/
 
+  /**
+   * Get the branch identifier of the installation
+   *
+   * @see #branchID
+   * @return the id to know which branch an installation belongs to
+   */
   public String getBranchID() {
       return this.branchID;
   }
 
+  /**
+   * Get the name of the branch an installation belongs to
+   *
+   * @see #branchSlug
+   * @return the name of the branch an installation belongs to
+   */
   public String getBranchSlug() {
       return this.branchSlug;
   }
