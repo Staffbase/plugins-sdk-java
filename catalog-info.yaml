@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: plugins-sdk-java
+  annotations:
+    github.com/project-slug: Staffbase/plugins-sdk-java
+  tags:
+    - java
+spec:
+  type: service
+  lifecycle: production
