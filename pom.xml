@@ -89,7 +89,7 @@
         <packageVersion.dir>com/staffbase/plugins/sdk</packageVersion.dir>
         <packageVersion.package>${project.groupId}.json</packageVersion.package>
         <jose4j.version>0.7.2</jose4j.version>
-        <log4j.version>2.13.3</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
         <junit.version>4.13</junit.version>
         <mockito.version>3.5.2</mockito.version>
     </properties>
