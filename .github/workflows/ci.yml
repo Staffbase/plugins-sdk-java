@@ -32,7 +32,7 @@ jobs:
       run: make test
 
   continuous-delivery:
-    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/')
     needs: build-test
     runs-on: ubuntu-20.04
 
