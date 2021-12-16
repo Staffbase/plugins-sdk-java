@@ -1,5 +1,3 @@
-# ⚠️ This repository is no longer under development and archived (read-only)
-
 [![Build Status](https://github.com/Staffbase/plugins-sdk-java/workflows/Continuous%20Integration/badge.svg)](https://github.com/Staffbase/plugins-sdk-java/actions)
 
 # Plugin SDK for Java
