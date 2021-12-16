@@ -1,4 +1,4 @@
-[![nuild Status](https://github.com/Staffbase/plugins-sdk-java/workflows/Continuous%20Integration/badge.svg)](https://github.com/Staffbase/plugins-sdk-java/actions)
+[![Build Status](https://github.com/Staffbase/plugins-sdk-java/workflows/Continuous%20Integration/badge.svg)](https://github.com/Staffbase/plugins-sdk-java/actions)
 
 # Plugin SDK for Java
 
