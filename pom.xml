@@ -178,7 +178,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <!-- <stagingProfileId>19375019933d12</stagingProfileId> -->
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
