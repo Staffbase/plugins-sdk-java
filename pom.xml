@@ -49,8 +49,8 @@
             </roles>
         </developer>
         <developer>
-            <name>Vitaliy Ivanov</name>
-            <email>vitaliy@staffbase.com</email>
+            <name>Daniel Grosse</name>
+            <email>daniel.grosse@staffbase.com</email>
             <timezone>Europe/Berlin</timezone>
             <organization>Staffbase</organization>
             <organizationUrl>https://staffbase.com</organizationUrl>
@@ -58,25 +58,15 @@
                 <role>Developer</role>
             </roles>
         </developer>
-        <developer>
-            <name>Felix Bytow</name>
-            <email>felix@staffbase.com</email>
-            <timezone>Europe/Berlin</timezone>
-            <organization>Staffbase</organization>
-            <organizationUrl>https://staffbase.com</organizationUrl>
-            <roles>
-                <role>Scrum Master</role>
-            </roles>
-        </developer>
     </developers>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
     </distributionManagement>
     <properties>
