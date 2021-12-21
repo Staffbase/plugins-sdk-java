@@ -49,3 +49,6 @@ jobs:
         gpg_passphrase: ${{ secrets.gpg_passphrase }}
         nexus_username: ${{ secrets.nexus_username }}
         nexus_password: ${{ secrets.nexus_password }}
+        maven_profiles: "release"
+        maven_args: >
+           -Drevision=${{ github.event.release.tag_name }}

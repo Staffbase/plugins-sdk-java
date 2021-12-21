@@ -9,10 +9,10 @@ test:
 	mvn test
 
 deploy:
-	mvn clean deploy -P release
+	mvn -Drevision=${TAG} clean deploy -P release
 
 doc: doc-clean
-	mvn site
+	mvn -Drevision=${TAG} site
 	git checkout ${DOC_BRANCH}
 	git rm --ignore-unmatch -r *
 	cp -r ./${DOC_FOLDER}/* ./
