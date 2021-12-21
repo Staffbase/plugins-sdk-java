@@ -14,7 +14,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 <dependency>
     <groupId>com.staffbase</groupId>
     <artifactId>plugins-sdk-java</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
 </dependency>
 ```
 
