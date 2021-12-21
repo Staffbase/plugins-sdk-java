@@ -1,0 +1,32 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Continuous Delivery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  continuous-delivery:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v2
+
+    - name: Install Java and Maven
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - name: Release Maven package
+      uses: samuelmeuli/action-maven-publish@v1
+      with:
+        gpg_private_key: ${{ secrets.gpg_private_key }}
+        gpg_passphrase: ${{ secrets.gpg_passphrase }}
+        nexus_username: ${{ secrets.nexus_username }}
+        nexus_password: ${{ secrets.nexus_password }}
+        maven_profiles: "release"
+        maven_args: >
+           -Drevision=${{ github.event.release.tag_name }}
