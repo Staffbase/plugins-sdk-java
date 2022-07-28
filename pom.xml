@@ -78,8 +78,8 @@
         <!--  Generate PackageVersion.java into this directory.  -->
         <packageVersion.dir>com/staffbase/plugins/sdk</packageVersion.dir>
         <packageVersion.package>${project.groupId}.json</packageVersion.package>
-        <jose4j.version>0.7.9</jose4j.version>
-        <log4j.version>2.17.0</log4j.version>
+        <jose4j.version>0.7.12</jose4j.version>
+        <log4j.version>2.17.2</log4j.version>
         <junit.version>4.13.2</junit.version>
         <mockito.version>4.2.0</mockito.version>
     </properties>
