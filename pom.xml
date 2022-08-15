@@ -81,7 +81,7 @@
         <jose4j.version>0.7.9</jose4j.version>
         <log4j.version>2.17.2</log4j.version>
         <junit.version>4.13.2</junit.version>
-        <mockito.version>4.2.0</mockito.version>
+        <mockito.version>4.7.0</mockito.version>
     </properties>
     <dependencies>
         <!-- JOSE4J -->
