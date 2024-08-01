@@ -1,0 +1,15 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: plugins-sdk-java
+  description: Framework to create a plugin in Java
+  annotations:
+    github.com/project-slug: Staffbase/plugins-sdk-java
+  tags:
+    - sdk
+    - framework
+spec:
+  type: library
+  lifecycle: production
+  owner: need-for-speed
