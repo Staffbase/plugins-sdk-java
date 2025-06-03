@@ -22,7 +22,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 
 ```
 dependencies {
-    compile 'com.staffbase:plugins-sdk-java:1.2.9'
+    implementation 'com.staffbase:plugins-sdk-java:1.2.9'
 }
 ```
 
@@ -44,7 +44,10 @@ You can try to create a token from the received jwt.
 	RSAPublicKey rsaPublicKey = ...
 
  	try {
+		// Create the SSO handler with your RSA public key
 		final SSOFacade ssoFac = SSOFacade.create(rsaPublicKey);
+
+		// Verify and decode the JWT token
 		final SSOData ssoData = ssoFac.verify(jwToken);
 		
 		// If the plugin instance was deleted in Staffbase
