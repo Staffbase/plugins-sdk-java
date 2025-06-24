@@ -2,7 +2,7 @@
 
 # Plugin SDK for Java
 
-If you are developing your own plugin for your Staffbase app we describe the authentication flow of a plugin at https://developers.staffbase.com/guide/customplugin-overview/. While this documentation just covers the conceptual ideas of the interface of plugins though – the so called Plugin SSO – we want to provide a library to help you develop your first plugin for Staffbase even faster. This SDK provides the basic functionality to parse and verify a provided token for Java.
+If you are developing your own plugin for your Staffbase app we describe the authentication flow of a plugin at https://developers.staffbase.com/guide/customplugin-overview/. While the official documentation covers only the conceptual aspects of the plugins – the so called Plugin SSO – we want to provide a library to help you develop your first plugin for Staffbase even faster. This SDK provides the basic functionality to parse and verify a provided token for Java.
 
 ## Installation
 
@@ -14,7 +14,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 <dependency>
     <groupId>com.staffbase</groupId>
     <artifactId>plugins-sdk-java</artifactId>
-    <version>1.2.4</version>
+    <version>1.2.9</version>
 </dependency>
 ```
 
@@ -22,7 +22,7 @@ We provide our Plugin SDK via Maven Central Repository (https://repo1.maven.org/
 
 ```
 dependencies {
-    compile 'com.staffbase:plugins-sdk-java:1.2.3'
+    implementation 'com.staffbase:plugins-sdk-java:1.2.9'
 }
 ```
 
@@ -44,7 +44,10 @@ You can try to create a token from the received jwt.
 	RSAPublicKey rsaPublicKey = ...
 
  	try {
+		// Create the SSO handler with your RSA public key
 		final SSOFacade ssoFac = SSOFacade.create(rsaPublicKey);
+
+		// Verify and decode the JWT token
 		final SSOData ssoData = ssoFac.verify(jwToken);
 		
 		// If the plugin instance was deleted in Staffbase
@@ -81,6 +84,6 @@ To run the tests a simple `# mvn test` command in the root directory will suffic
 
 ## License
 
-Copyright 2017-2021 Staffbase GmbH.
+Copyright 2017-2025 Staffbase SE.
 
 Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
