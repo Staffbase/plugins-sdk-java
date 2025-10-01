@@ -70,6 +70,7 @@
         </repository>
     </distributionManagement>
     <properties>
+        <revision>1.2.9</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <osgi.export>
