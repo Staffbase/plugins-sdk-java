@@ -25,7 +25,7 @@
     <scm>
         <connection>scm:git:git://github.com/Staffbase/plugins-sdk-java.git</connection>
         <developerConnection>scm:git:ssh://github.com/Staffbase/plugins-sdk-java.git</developerConnection>
-        <url>http://github.com/Staffbase/plugins-sdk-java/tree/master</url>
+        <url>http://github.com/Staffbase/plugins-sdk-java/tree/main</url>
     </scm>
     <developers>
         <developer>
