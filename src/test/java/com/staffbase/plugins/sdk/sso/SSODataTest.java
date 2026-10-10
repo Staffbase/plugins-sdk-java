@@ -33,8 +33,8 @@ public class SSODataTest {
 
   public static final String DATA_INSTANCE_ID = "55c79b6ee4b06c6fb19bd1e2";
   public static final String DATA_SESSION_ID = "vQt7mw67qgJZHddZ5FuUY/YPo";
-  public static final String DATA_BRANCH_ID = "56a6306f0cf23b042e0ae307";
-  public static final String DATA_BRANCH_SLUG = "staffbasetest";
+  public static final String DATA_BRANCH_ID = "6023a96bbed1831244192df9";
+  public static final String DATA_BRANCH_SLUG = "unittest";
   public static final String DATA_USER_ID = "541954c3e4b08bbdce1a340a";
   public static final String DATA_USER_EXTERNAL_ID = "jdoe";
   public static final String DATA_USER_USERNAME = "john.doe";
