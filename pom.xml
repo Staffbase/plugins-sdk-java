@@ -79,8 +79,8 @@
         <!--  Generate PackageVersion.java into this directory.  -->
         <packageVersion.dir>com/staffbase/plugins/sdk</packageVersion.dir>
         <packageVersion.package>${project.groupId}.json</packageVersion.package>
-        <jose4j.version>0.9.6</jose4j.version>
-        <log4j.version>2.25.4</log4j.version>
+        <jose4j.version>0.9.7</jose4j.version>
+        <log4j.version>2.26.1</log4j.version>
         <junit.version>4.13.2</junit.version>
         <mockito.version>4.11.0</mockito.version>
     </properties>
@@ -148,7 +148,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.12.0</version>
                 <configuration>
                     <source>8</source>
                 </configuration>
@@ -164,12 +164,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.12.1</version>
+                <version>3.22.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.6.2</version>
+                <version>3.9.0</version>
             </plugin>
             <!-- Deployment -->
             <plugin>
@@ -247,7 +247,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.8.0</version>
+                        <version>3.12.0</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
